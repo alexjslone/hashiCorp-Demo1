@@ -15,7 +15,7 @@ variable "availability_zone" {
 variable "ami" {
   description = "The ID of the Amazon Machine Image (AMI) used to create the EC2 instance."
   type        = string
-  default     = "ami-0261755***b8c4a84"
+  default     = "ami-08012c0a9ee8e21c4"
 }
 variable "instance_type" {
   description = "The type of EC2 instance used to create the instance."
