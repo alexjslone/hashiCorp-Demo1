@@ -160,9 +160,17 @@ resource "aws_instance" "hashi_ec2" {
   instance_type = var.instance_type
   availability_zone = var.availability_zone
   key_name = "key_hashiDemo"
+  user_data = file("userData.sh")
   
   network_interface {
     device_index = 0
     network_interface_id = aws_network_interface.public_net_interface.id
   }
+
+#user_data = file("${path.module}/userData.sh")
+
+  tags = {
+    Name = "hashi_ec2"
+  }
+
 }
