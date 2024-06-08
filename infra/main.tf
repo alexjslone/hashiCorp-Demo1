@@ -93,7 +93,7 @@ resource "aws_security_group" "hashi_SG" {
       to_port          = 443
       protocol         = "tcp"
       cidr_blocks      = ["0.0.0.0/0", aws_vpc.hashi_vpc.cidr_block]
-      ipv6_cidr_blocks  = []
+      ipv6_cidr_blocks  = ["::/0"]
       prefix_list_ids   = []
       security_groups   = []
       self              = false
@@ -104,7 +104,8 @@ resource "aws_security_group" "hashi_SG" {
       to_port          = 80
       protocol         = "tcp"
       cidr_blocks      = ["0.0.0.0/0", aws_vpc.hashi_vpc.cidr_block]
-      ipv6_cidr_blocks  = []
+      #cidr_blocks     = ["0.0.0.0/0"]
+      ipv6_cidr_blocks  = ["::/0"]
       prefix_list_ids   = []
       security_groups   = []
       self              = false
@@ -115,7 +116,8 @@ resource "aws_security_group" "hashi_SG" {
       to_port          = 22
       protocol         = "tcp"
       cidr_blocks      = ["0.0.0.0/0", aws_vpc.hashi_vpc.cidr_block]
-      ipv6_cidr_blocks  = []
+      #cidr_blocks      = ["0.0.0.0/0"]
+      ipv6_cidr_blocks  = ["::/0"]
       prefix_list_ids   = []
       security_groups   = []
       self              = false
@@ -128,7 +130,7 @@ resource "aws_security_group" "hashi_SG" {
       protocol         = "-1"
       cidr_blocks      = ["0.0.0.0/0"]
       description      = "Outbound traffic rule"
-      ipv6_cidr_blocks = []
+      ipv6_cidr_blocks = ["::/0"]
       prefix_list_ids  = []
       security_groups  = []
       self             = false
@@ -160,7 +162,7 @@ resource "aws_instance" "hashi_ec2" {
   instance_type = var.instance_type
   availability_zone = var.availability_zone
   key_name = "key_hashiDemo"
-  user_data = file("userData.sh")
+  user_data =  "${file("userData.sh")}"
   
   network_interface {
     device_index = 0
